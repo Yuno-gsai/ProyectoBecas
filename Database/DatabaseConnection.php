@@ -26,7 +26,7 @@ class DatabaseConnection {
         $port       = getenv('DB_PORT') ?? 3306;
         $username   = getenv('DB_USERNAME') ?? 'adminmysql';
         $password   = getenv('DB_PASSWORD') ?? '';
-        $database   = getenv('DB_DATABASE') ?? 'red_social';
+        $database   = getenv('DB_DATABASE') ?? 'BECAS';
         $sslCaPath  = getenv('DB_SSL_CA_PATH') ?? 'uploads/certificado.pem';
 
         try {

@@ -7,3 +7,4 @@ if (!isset($_SESSION['userID'])) {
 }
 
 require_once 'Views/dashboard.php';
+?>

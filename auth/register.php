@@ -1,0 +1,1 @@
+<h1>this is de register page</h1>

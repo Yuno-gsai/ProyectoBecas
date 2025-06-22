@@ -1,14 +1,9 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+session_start();
 
-require_once __DIR__ . '/Database/DatabaseConnection.php';
-
-try {
-    $database = new DatabaseConnection();
-    echo "<h1>Conexión exitosa</h1>";
-} catch (Exception $e) {
-    echo "<h1>Error de conexión:</h1>";
-    echo "<pre>" . $e->getMessage() . "</pre>";
+if (!isset($_SESSION['userID'])) {
+    header("Location: /auth/login.php");
+    exit();
 }
-?>
+
+require_once 'Views/dashboard.php';

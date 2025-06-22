@@ -22,12 +22,12 @@ class DatabaseConnection {
      */
     public function __construct() {
         // Obtener configuracion de las variables de entorno o usar valores por defecto
-        $host       = getenv('DB_HOST') ?? 'mysql-server-uno.mysql.database.azure.com';
-        $port       = getenv('DB_PORT') ?? 3306;
-        $username   = getenv('DB_USERNAME') ?? 'adminmysql';
-        $password   = getenv('DB_PASSWORD') ?? '';
-        $database   = getenv('DB_DATABASE') ?? 'BECAS';
-        $sslCaPath  = getenv('DB_SSL_CA_PATH') ?? 'uploads/certificado.pem';
+        $host       = getenv('DB_HOST');
+        $port       = getenv('DB_PORT');
+        $username   = getenv('DB_USERNAME');
+        $password   = getenv('DB_PASSWORD');
+        $database   = getenv('DB_DATABASE');
+        $sslCaPath  = getenv('DB_SSL_CA_PATH');
 
         try {
             // Configuracion de opciones de PDO

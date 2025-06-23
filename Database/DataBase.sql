@@ -32,21 +32,6 @@ CREATE TABLE IF NOT EXISTS BeEspecialidadesBachillerato (
   NombreEspecialidad VARCHAR(100) NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS BeTiposDeGasto (
-  IdTipoGasto INT PRIMARY KEY AUTO_INCREMENT,
-  NombreGasto VARCHAR(100) NOT NULL
-);
-
-CREATE TABLE IF NOT EXISTS BeTiposDeBien (
-  IdTipoBien INT PRIMARY KEY AUTO_INCREMENT,
-  NombreBien VARCHAR(100) NOT NULL
-);
-
-CREATE TABLE IF NOT EXISTS BeTiposDeDocumento (
-  IdTipoDocumento INT PRIMARY KEY AUTO_INCREMENT,
-  NombreDocumento VARCHAR(255) NOT NULL
-);
-
 CREATE TABLE IF NOT EXISTS BeAspirantes (
   IdAspirante INT PRIMARY KEY AUTO_INCREMENT,
   IdDireccion INT NOT NULL,
@@ -61,7 +46,11 @@ CREATE TABLE IF NOT EXISTS BeAspirantes (
   GradoEscolarActual VARCHAR(100),
   UrlFotoPerfil TEXT,
   PerfilFacebook VARCHAR(255),
+  NombreUsuario VARCHAR(50) NOT NULL UNIQUE,
+  ContrasenaHash VARCHAR(255) NOT NULL,
+  CorreoElectronico VARCHAR(255) NOT NULL UNIQUE,
   FechaCreacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  UltimoIngreso TIMESTAMP,
   FOREIGN KEY (IdDireccion) REFERENCES BeDirecciones(IdDireccion)
 );
 
@@ -144,20 +133,18 @@ CREATE TABLE IF NOT EXISTS BeIngresosFamiliares (
 CREATE TABLE IF NOT EXISTS BeGastosMensuales (
   IdGasto INT PRIMARY KEY AUTO_INCREMENT,
   IdSolicitud INT NOT NULL,
-  IdTipoGasto INT NOT NULL,
+  NombreGasto VARCHAR(100) NOT NULL,
   Monto DECIMAL(10,2) NOT NULL,
   Descripcion VARCHAR(255),
-  FOREIGN KEY (IdSolicitud) REFERENCES BeSolicitudes(IdSolicitud),
-  FOREIGN KEY (IdTipoGasto) REFERENCES BeTiposDeGasto(IdTipoGasto)
+  FOREIGN KEY (IdSolicitud) REFERENCES BeSolicitudes(IdSolicitud)
 );
 
 CREATE TABLE IF NOT EXISTS BeBienesFamiliares (
   IdBienFamiliar INT PRIMARY KEY AUTO_INCREMENT,
   IdSolicitud INT NOT NULL,
-  IdTipoBien INT NOT NULL,
+  NombreBien VARCHAR(100) NOT NULL,
   Descripcion TEXT,
-  FOREIGN KEY (IdSolicitud) REFERENCES BeSolicitudes(IdSolicitud),
-  FOREIGN KEY (IdTipoBien) REFERENCES BeTiposDeBien(IdTipoBien)
+  FOREIGN KEY (IdSolicitud) REFERENCES BeSolicitudes(IdSolicitud)
 );
 
 CREATE TABLE IF NOT EXISTS BeHistorialBecasAprobadas (
@@ -171,25 +158,12 @@ CREATE TABLE IF NOT EXISTS BeHistorialBecasAprobadas (
   FOREIGN KEY (IdSolicitud) REFERENCES BeSolicitudes(IdSolicitud)
 );
 
-CREATE TABLE IF NOT EXISTS BeUsuarios (
-  IdUsuario INT PRIMARY KEY AUTO_INCREMENT,
-  NombreUsuario VARCHAR(50) NOT NULL,
-  ContrasenaHash VARCHAR(255) NOT NULL,
-  RolUsuario VARCHAR(20) NOT NULL,
-  CorreoElectronico VARCHAR(255) NOT NULL,
-  IdAspirante INT,
-  FechaCreacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  UltimoIngreso TIMESTAMP,
-  FOREIGN KEY (IdAspirante) REFERENCES BeAspirantes(IdAspirante)
-);
-
 CREATE TABLE IF NOT EXISTS BeDocumentosAdjuntos (
   IdDocumento INT PRIMARY KEY AUTO_INCREMENT,
   EntidadId INT NOT NULL,
   TipoEntidad VARCHAR(50) NOT NULL,
-  IdTipoDocumento INT NOT NULL,
+  NombreDocumento VARCHAR(255) NOT NULL,
   UrlDocumento TEXT NOT NULL,
   NombreArchivo VARCHAR(255),
-  FechaSubida TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  FOREIGN KEY (IdTipoDocumento) REFERENCES BeTiposDeDocumento(IdTipoDocumento)
+  FechaSubida TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

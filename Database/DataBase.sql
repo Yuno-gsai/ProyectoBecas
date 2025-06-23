@@ -7,10 +7,11 @@ CREATE TABLE IF NOT EXISTS BeDirecciones (
   Municipio INT NOT NULL,
   Distrito INT NOT NULL,
   DireccionExacta TEXT NOT NULL,
-  --FOREIGN KEY (Departamento) REFERENCES BeDepartamentos(IdDepartamento), -- Cambiar esto por la tabla del itca
-  --FOREIGN KEY (Municipio) REFERENCES BeMunicipios(IdMunicipio), -- Cambiar esto por la tabla del itca
-  --FOREIGN KEY (Distrito) REFERENCES BeDistritos(IdDistrito) -- Cambiar esto por la tabla del itca
+  FOREIGN KEY (Departamento) REFERENCES pr_depto(iddepto),
+  FOREIGN KEY (Municipio) REFERENCES pr_municipio_n (idmunicipio),
+  FOREIGN KEY (Distrito) REFERENCES pr_distrito(iddistrito)
 );
+
 
 CREATE TABLE IF NOT EXISTS BeInstitucionesEducativas (
   IdInstitucion INT PRIMARY KEY AUTO_INCREMENT,

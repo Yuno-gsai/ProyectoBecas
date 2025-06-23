@@ -12,7 +12,6 @@ CREATE TABLE IF NOT EXISTS BeDirecciones (
   FOREIGN KEY (Distrito) REFERENCES pr_distrito(iddistrito)
 );
 
-
 CREATE TABLE IF NOT EXISTS BeInstitucionesEducativas (
   IdInstitucion INT PRIMARY KEY AUTO_INCREMENT,
   IdDireccion INT NOT NULL,

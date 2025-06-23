@@ -4,6 +4,6 @@ $_SESSION = [];
 session_destroy();
 
 // Redirigimos a la página de login.
-header('Location: /auth/login.php');
+header('Location: __DIR__ . /../auth/login.php');
 exit();
 ?>

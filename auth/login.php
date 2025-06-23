@@ -7,7 +7,7 @@ if (isset($_SESSION['userID'])) { // Uso 'userID' para coincidir con tu index.ph
     exit();
 }
 
-require_once '../Models/BeUsuarioModel.php'; // La ruta ahora sube un nivel (../)
+require_once __DIR__ . '/../Models/BeUsuarioModel.php'; // La ruta ahora sube un nivel (../)
 
 $mensajeError = '';
 
@@ -39,5 +39,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 // Al final, después de toda la lógica, incluimos la vista que contiene el HTML.
 // La lógica y las variables de este script (como $mensajeError) estarán disponibles en la vista.
-require_once '../Views/login_view.php';
+require_once __DIR__ . '/../Views/login_view.php';
 ?>

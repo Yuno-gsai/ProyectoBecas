@@ -57,8 +57,8 @@ abstract class BaseModel extends DatabaseConnection{
         return $this->ExecuteQuery($query);
     }
 
-    public abstract function create();
-    public abstract function update();
+    public abstract function create(array $data);
+    public abstract function update(int $id, array $data);
     
     // Nota: Los metodos create() y update() deben ser implementados en las clases hijas
     // ya que la estructura de cada tabla puede variar
